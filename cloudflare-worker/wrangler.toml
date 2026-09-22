@@ -1,0 +1,59 @@
+name = "coffee-shop-api"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ============================================================
+# Ù…ØªØºÛŒØ±Ù‡Ø§ÛŒ Ø¹Ù…ÙˆÙ…ÛŒ (ØºÛŒØ± Ø­Ø³Ø§Ø³) - Ø§ÛŒÙ†â€ŒÙ‡Ø§ Ø§ÛŒÙ†Ø¬Ø§ Ù‚Ø§Ø¨Ù„ Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ù‡Ø³ØªÙ†Ø¯
+# ============================================================
+[vars]
+CAFE_NAME = "Coffee Shop"
+NODE_ENV = "development"
+# Ø¢Ø¯Ø±Ø³ ÙˆØ§Ù‚Ø¹ÛŒ ÙØ±Ø§Ù†Øªâ€ŒØ§Ù†Ø¯ØªÙˆÙ† Ø±ÙˆÛŒ Cloudflare Pages Ø±Ùˆ Ø§ÛŒÙ†Ø¬Ø§ Ø¨Ø°Ø§Ø±ÛŒØ¯ (Ø¨Ø±Ø§ÛŒ CORS)
+PUBLIC_URL = "https://your-frontend.pages.dev"
+SUPABASE_URL = "https://kfnjrfngxucickztwcxw.supabase.co"
+
+# ============================================================
+# Ù…Ù‚Ø§Ø¯ÛŒØ± Ø­Ø³Ø§Ø³ (SUPABASE_SERVICE_KEY, BALE_BOT_TOKEN, BALE_CHAT_ID,
+# BALE_ADMIN_CHAT_ID, SESSION_SECRET) Ø±Ø§ Ø§ÛŒÙ†Ø¬Ø§ Ù†Ù†ÙˆÛŒØ³ÛŒØ¯.
+# Ø¨Ø§ Ø¯Ø³ØªÙˆØ± Ø²ÛŒØ± Ø³Øªâ€ŒØ´ÙˆÙ† Ú©Ù†ÛŒØ¯ ØªØ§ Ø±Ù…Ø²Ù†Ú¯Ø§Ø±ÛŒâ€ŒØ´Ø¯Ù‡ Ø±ÙˆÛŒ Cloudflare Ø°Ø®ÛŒØ±Ù‡ Ø¨Ø´Ù†:
+#   wrangler secret put SUPABASE_SERVICE_KEY
+#   wrangler secret put BALE_BOT_TOKEN
+#   wrangler secret put BALE_CHAT_ID
+#   wrangler secret put BALE_ADMIN_CHAT_ID
+#   wrangler secret put SESSION_SECRET
+
+# ============================================================
+
+# ------------------------------------------------------------
+# Rate Limiting (Ø¬Ø§ÛŒÚ¯Ø²ÛŒÙ† express-rate-limit)
+# Ø¯ÙˆØ±Ù‡ (period) ÙÙ‚Ø· Ù…ÛŒâ€ŒØªÙˆÙ†Ù‡ 10 ÛŒØ§ 60 Ø«Ø§Ù†ÛŒÙ‡ Ø¨Ø§Ø´Ù‡ (Ù…Ø­Ø¯ÙˆØ¯ÛŒØª Ø®ÙˆØ¯ Cloudflare)
+# ------------------------------------------------------------
+[[ratelimits]]
+name = "PUBLIC_API_LIMITER"
+namespace_id = "1001"
+[ratelimits.simple]
+limit = 100
+period = 60
+
+[[ratelimits]]
+name = "ORDER_LIMITER"
+namespace_id = "1002"
+[ratelimits.simple]
+limit = 10
+period = 60
+
+[[ratelimits]]
+name = "TRACKING_LIMITER"
+namespace_id = "1003"
+[ratelimits.simple]
+limit = 10
+period = 60
+
+[[ratelimits]]
+name = "ADMIN_LOGIN_LIMITER"
+namespace_id = "1004"
+[ratelimits.simple]
+limit = 5
+period = 60
+

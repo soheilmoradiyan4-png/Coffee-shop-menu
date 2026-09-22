@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>منوی کافه</title>
+
+    <link
+        rel="stylesheet"
+        href="./css/main.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/responsive.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         Header
+    ========================== -->
+
+    <header class="site-header">
+
+        <div class="container">
+
+            <h1 id="cafe-name">
+                کافه
+            </h1>
+
+            <p>
+                منوی آنلاین
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         Menu
+    ========================== -->
+
+    <main class="container">
+
+        <section
+            id="categories"
+            class="categories"
+        >
+            <!-- دسته‌بندی‌ها با JavaScript ساخته می‌شوند -->
+        </section>
+
+
+        <section
+            id="products"
+            class="products"
+        >
+            <!-- محصولات با JavaScript ساخته می‌شوند -->
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         Cart Bar
+    ========================== -->
+
+    <div class="cart-bar">
+
+        <span>
+            🛒 سبد خرید
+        </span>
+
+        <span
+            id="cart-count"
+            class="cart-count"
+            hidden
+        >
+            0
+        </span>
+
+        <strong id="cart-total">
+            0 تومان
+        </strong>
+
+    </div>
+
+
+
+    <!-- =========================
+         Cart
+    ========================== -->
+
+    <div
+        id="cart"
+        class="cart"
+    >
+        <!-- سبد خرید با JavaScript ساخته می‌شود -->
+    </div>
+
+
+
+    <!-- =========================
+         Checkout
+    ========================== -->
+
+    <section
+        id="checkout"
+        class="checkout"
+        hidden
+    >
+
+        <div class="checkout-header">
+
+            <h2>
+                ثبت سفارش
+            </h2>
+
+            <button
+                type="button"
+                id="close-checkout"
+                class="close-checkout"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="checkout-form">
+
+
+            <!-- نوع سفارش -->
+
+            <div class="form-group">
+
+                <label>
+                    نوع سفارش
+                </label>
+
+
+                <div class="order-type-options">
+
+                    <label class="order-type-option">
+
+                        <input
+                            type="radio"
+                            name="orderType"
+                            value="dine_in"
+                            checked
+                        >
+
+                        <span>
+                            داخل کافه
+                        </span>
+
+                    </label>
+
+
+                    <label class="order-type-option">
+
+                        <input
+                            type="radio"
+                            name="orderType"
+                            value="takeaway"
+                        >
+
+                        <span>
+                            بیرون‌بر
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- شماره میز -->
+
+            <div
+                id="table-field"
+                class="form-group"
+            >
+
+                <label
+                    for="table-no"
+                >
+                    شماره میز
+                </label>
+
+                <input
+                    id="table-no"
+                    name="tableNo"
+                    type="number"
+                    min="1"
+                    max="999"
+                    placeholder="مثلاً 5"
+                >
+
+            </div>
+
+
+
+            <!-- نام مشتری -->
+
+            <div class="form-group">
+
+                <label
+                    for="customer-name"
+                >
+                    نام شما
+                </label>
+
+                <input
+                    id="customer-name"
+                    name="customerName"
+                    type="text"
+                    maxlength="100"
+                    placeholder="نام شما"
+                >
+
+            </div>
+
+
+
+            <!-- توضیحات -->
+
+            <div class="form-group">
+
+                <label
+                    for="order-note"
+                >
+                    توضیحات سفارش
+                </label>
+
+                <textarea
+                    id="order-note"
+                    name="note"
+                    maxlength="500"
+                    rows="4"
+                    placeholder="مثلاً بدون شکر..."
+                ></textarea>
+
+            </div>
+
+
+
+            <!-- مبلغ -->
+
+            <div class="checkout-summary">
+
+                <span>
+                    مبلغ سفارش
+                </span>
+
+                <strong
+                    id="checkout-total"
+                >
+                    0 تومان
+                </strong>
+
+            </div>
+
+
+
+            <!-- ثبت -->
+
+            <button
+                type="submit"
+                id="submit-order"
+                class="submit-order"
+            >
+                ثبت سفارش
+            </button>
+
+
+
+            <!-- پیام -->
+
+            <div
+                id="checkout-message"
+                class="checkout-message"
+            ></div>
+
+        </form>
+
+    </section>
+
+
+
+    <!-- =========================
+         Order Tracking
+    ========================== -->
+
+    <section
+        id="order-tracking"
+        class="order-tracking"
+    >
+
+        <div class="order-tracking-header">
+
+            <h2>
+                پیگیری سفارش
+            </h2>
+
+            <p>
+                کد ۶ رقمی سفارش خود را وارد کنید.
+            </p>
+
+        </div>
+
+
+        <form
+            id="tracking-form"
+            class="tracking-form"
+        >
+
+            <div class="form-group">
+
+                <label
+                    for="tracking-code"
+                >
+                    کد پیگیری
+                </label>
+
+                <input
+                    id="tracking-code"
+                    name="trackingCode"
+                    type="text"
+                    inputmode="numeric"
+                    autocomplete="off"
+                    maxlength="6"
+                    placeholder="مثلاً 547077"
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                id="tracking-submit"
+                class="tracking-submit"
+            >
+                پیگیری سفارش
+            </button>
+
+        </form>
+
+
+        <div
+            id="tracking-message"
+            class="tracking-message"
+        ></div>
+
+
+        <div
+            id="tracking-result"
+            class="tracking-result"
+            hidden
+        >
+            <!-- اطلاعات سفارش با JavaScript ساخته می‌شود -->
+        </div>
+        <!-- Review Section -->
+
+<section
+    id="review-section"
+    class="review-section"
+    hidden
+>
+
+    <div class="review-card">
+
+        <div class="review-header">
+
+            <h3>
+                ⭐ نظر شما درباره سفارش
+            </h3>
+
+            <p>
+                تجربه شما برای ما ارزشمند است.
+            </p>
+
+        </div>
+
+
+        <!-- Review Form -->
+
+        <form
+            id="review-form"
+            class="review-form"
+        >
+
+            <div class="review-rating-group">
+
+                <label>
+                    امتیاز شما
+                </label>
+
+                <div
+                    id="review-stars"
+                    class="review-stars"
+                    role="radiogroup"
+                    aria-label="امتیاز سفارش"
+                >
+
+                    <button
+                        type="button"
+                        class="review-star"
+                        data-rating="1"
+                        aria-label="۱ ستاره"
+                    >
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        class="review-star"
+                        data-rating="2"
+                        aria-label="۲ ستاره"
+                    >
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        class="review-star"
+                        data-rating="3"
+                        aria-label="۳ ستاره"
+                    >
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        class="review-star"
+                        data-rating="4"
+                        aria-label="۴ ستاره"
+                    >
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        class="review-star"
+                        data-rating="5"
+                        aria-label="۵ ستاره"
+                    >
+                        ★
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="review-comment-group">
+
+                <label for="review-comment">
+                    نظر شما
+                    <span>
+                        (اختیاری)
+                    </span>
+                </label>
+
+                <textarea
+                    id="review-comment"
+                    rows="4"
+                    maxlength="1000"
+                    placeholder="تجربه شما از سفارش..."
+                ></textarea>
+
+            </div>
+
+
+            <div
+                id="review-message"
+                class="review-message"
+            ></div>
+
+
+            <button
+                type="submit"
+                id="review-submit"
+                class="review-submit-button"
+            >
+                ثبت نظر
+            </button>
+
+        </form>
+
+
+        <!-- Submitted Review -->
+
+        <div
+            id="review-submitted"
+            class="review-submitted"
+            hidden
+        >
+
+            <div class="review-success-icon">
+                ✓
+            </div>
+
+            <h4>
+                نظر شما ثبت شده است
+            </h4>
+
+            <div
+                id="review-submitted-stars"
+                class="review-submitted-stars"
+            ></div>
+
+            <p
+                id="review-submitted-comment"
+                class="review-submitted-comment"
+            ></p>
+
+            <p class="review-thank-you">
+                از اینکه تجربه خود را با ما به اشتراک گذاشتید، متشکریم ❤️
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+    </section>
+
+
+
+    <!-- =========================
+         JavaScript
+    ========================== -->
+
+    <script
+        src="./js/api.js"
+    ></script>
+
+    <script
+        src="./js/cart.js"
+    ></script>
+
+    <script
+        src="./js/app.js"
+    ></script>
+
+
+</body>
+
+</html>

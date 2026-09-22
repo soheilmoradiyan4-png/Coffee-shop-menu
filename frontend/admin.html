@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        مدیریت کافه | Cafe QR Ordering
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="./css/main.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/admin.css"
+    >
+
+</head>
+
+<body>
+
+    <header class="admin-header">
+
+        <div class="container admin-header-inner">
+
+            <div>
+
+                <h1>
+                    مدیریت کافه
+                </h1>
+
+                <p>
+                    مدیریت سفارش‌ها، محصولات، دسته‌بندی‌ها و نظرات مشتریان
+                </p>
+
+            </div>
+
+
+            <div class="admin-header-actions">
+
+                <span
+                    id="admin-username"
+                    class="admin-username"
+                >
+                    مدیر
+                </span>
+
+
+                <button
+                    id="refresh-orders"
+                    class="admin-refresh-btn"
+                    type="button"
+                >
+                    🔄 بروزرسانی
+                </button>
+
+
+                <button
+                    id="admin-logout"
+                    class="admin-logout-btn"
+                    type="button"
+                >
+                    🚪 خروج
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="container admin-container">
+
+
+        <!-- ==============================
+             مدیریت دسته‌بندی‌ها
+        ============================== -->
+
+        <section class="category-management">
+
+            <div class="category-management-header">
+
+                <div>
+
+                    <h2>
+                        مدیریت دسته‌بندی‌ها
+                    </h2>
+
+                    <p>
+                        دسته‌بندی‌های منوی کافه را مدیریت کنید.
+                    </p>
+
+                </div>
+
+                <div
+                    id="categories-count"
+                    class="categories-count"
+                >
+                    ۰ دسته‌بندی
+                </div>
+
+            </div>
+
+
+            <div class="category-form-card">
+
+                <div class="category-form-header">
+
+                    <h3 id="category-form-title">
+                        افزودن دسته‌بندی جدید
+                    </h3>
+
+                </div>
+
+
+                <form
+                    id="category-form"
+                    class="category-form"
+                >
+
+                    <input
+                        type="hidden"
+                        id="category-id"
+                    >
+
+
+                    <div class="category-form-grid">
+
+                        <div class="admin-form-group">
+
+                            <label for="category-name">
+                                نام دسته‌بندی
+                            </label>
+
+                            <input
+                                id="category-name"
+                                type="text"
+                                maxlength="100"
+                                placeholder="مثلاً قهوه گرم"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="admin-form-group">
+
+                            <label for="category-slug">
+                                Slug
+                            </label>
+
+                            <input
+                                id="category-slug"
+                                type="text"
+                                maxlength="120"
+                                placeholder="مثلاً hot-coffee"
+                                dir="ltr"
+                                required
+                            >
+
+                            <small>
+                                فقط حروف انگلیسی، عدد و خط تیره
+                            </small>
+
+                        </div>
+
+
+                        <div class="admin-form-group">
+
+                            <label for="category-sort-order">
+                                ترتیب نمایش
+                            </label>
+
+                            <input
+                                id="category-sort-order"
+                                type="number"
+                                min="0"
+                                step="1"
+                                value="0"
+                            >
+
+                        </div>
+
+
+                        <div class="admin-form-checkbox">
+
+                            <label>
+
+                                <input
+                                    id="category-is-active"
+                                    type="checkbox"
+                                    checked
+                                >
+
+                                <span>
+                                    دسته‌بندی فعال باشد
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="category-form-actions">
+
+                        <button
+                            id="category-submit"
+                            class="category-submit-btn"
+                            type="submit"
+                        >
+                            ➕ افزودن دسته‌بندی
+                        </button>
+
+
+                        <button
+                            id="category-cancel"
+                            class="category-cancel-btn"
+                            type="button"
+                            hidden
+                        >
+                            انصراف
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div
+                id="category-message"
+                class="category-message"
+            ></div>
+
+
+            <div
+                id="categories-container"
+                class="categories-container"
+            ></div>
+
+        </section>
+
+
+        <!-- ==============================
+             مدیریت محصولات
+        ============================== -->
+
+        <section class="product-management">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        مدیریت محصولات
+                    </h2>
+
+                    <p>
+                        محصولات منوی کافه را مدیریت کنید.
+                    </p>
+
+                </div>
+
+                <span
+                    id="products-count"
+                    class="section-count"
+                >
+                    ۰ محصول
+                </span>
+
+            </div>
+
+
+            <div class="product-form-card">
+
+                <h3 id="product-form-title">
+                    افزودن محصول جدید
+                </h3>
+
+
+                <form id="product-form">
+
+                    <input
+                        type="hidden"
+                        id="product-id"
+                    >
+
+
+                    <div class="product-form-grid">
+
+                        <div class="form-group">
+
+                            <label for="product-name">
+                                نام محصول
+                            </label>
+
+                            <input
+                                type="text"
+                                id="product-name"
+                                maxlength="150"
+                                placeholder="مثلاً اسپرسو"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="product-category">
+                                دسته‌بندی
+                            </label>
+
+                            <select
+                                id="product-category"
+                                required
+                            >
+
+                                <option value="">
+                                    انتخاب دسته‌بندی
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="product-price">
+                                قیمت
+                            </label>
+
+                            <input
+                                type="number"
+                                id="product-price"
+                                min="0"
+                                step="1"
+                                placeholder="70000"
+                                required
+                            >
+
+                            <small>
+                                قیمت به تومان وارد شود.
+                            </small>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="product-sort-order">
+                                ترتیب نمایش
+                            </label>
+
+                            <input
+                                type="number"
+                                id="product-sort-order"
+                                min="0"
+                                step="1"
+                                value="0"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group product-description-group">
+
+                            <label for="product-description">
+                                توضیحات
+                            </label>
+
+                            <textarea
+                                id="product-description"
+                                rows="3"
+                                placeholder="توضیح کوتاهی درباره محصول..."
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="product-availability-field">
+
+                            <label class="checkbox-label">
+
+                                <input
+                                    type="checkbox"
+                                    id="product-available"
+                                    checked
+                                >
+
+                                <span>
+                                    محصول موجود است
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="product-message"
+                        class="product-message"
+                    ></div>
+
+
+                    <div class="product-form-actions">
+
+                        <button
+                            type="submit"
+                            id="product-submit"
+                            class="admin-primary-button"
+                        >
+                            افزودن محصول
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="product-cancel"
+                            class="admin-secondary-button"
+                            hidden
+                        >
+                            انصراف از ویرایش
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="products-list-header">
+
+                <h3>
+                    محصولات
+                </h3>
+
+            </div>
+
+
+            <div
+                id="products-container"
+                class="products-container"
+            ></div>
+
+        </section>
+
+
+        <!-- ==============================
+             مدیریت سفارش‌ها
+        ============================== -->
+
+        <section class="admin-toolbar">
+
+            <div class="admin-filter">
+
+                <label for="status-filter">
+                    فیلتر وضعیت
+                </label>
+
+
+                <select id="status-filter">
+
+                    <option value="">
+                        همه سفارش‌ها
+                    </option>
+
+                    <option value="new">
+                        سفارش‌های جدید
+                    </option>
+
+                    <option value="preparing">
+                        در حال آماده‌سازی
+                    </option>
+
+                    <option value="ready">
+                        آماده تحویل
+                    </option>
+
+                    <option value="done">
+                        تحویل‌شده
+                    </option>
+
+                    <option value="cancelled">
+                        لغوشده
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="orders-count"
+                class="orders-count"
+            >
+                ۰ سفارش
+            </div>
+
+        </section>
+
+
+        <div
+            id="admin-message"
+            class="admin-message"
+        ></div>
+
+
+        <section
+            id="orders-container"
+            class="orders-container"
+        ></section>
+
+
+        <!-- ==============================
+             مدیریت نظرات مشتریان
+        ============================== -->
+
+        <section class="review-management">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        ⭐ نظرات مشتریان
+                    </h2>
+
+                    <p>
+                        امتیازها و نظرات ثبت‌شده برای سفارش‌های تحویل‌شده
+                    </p>
+
+                </div>
+
+
+                <span
+                    id="reviews-count"
+                    class="section-count"
+                >
+                    ۰ نظر
+                </span>
+
+            </div>
+
+
+            <!-- خلاصه آمار -->
+
+            <div class="review-stats">
+
+                <div class="review-stat-card">
+
+                    <span class="review-stat-icon">
+                        ⭐
+                    </span>
+
+                    <div>
+
+                        <span class="review-stat-label">
+                            میانگین امتیاز
+                        </span>
+
+                        <strong id="reviews-average">
+                            ۰
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="review-stat-card">
+
+                    <span class="review-stat-icon">
+                        📝
+                    </span>
+
+                    <div>
+
+                        <span class="review-stat-label">
+                            تعداد نظرات
+                        </span>
+
+                        <strong id="reviews-total">
+                            ۰
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- توزیع امتیازها -->
+
+            <div class="review-distribution-card">
+
+                <h3>
+                    توزیع امتیازها
+                </h3>
+
+
+                <div
+                    id="review-distribution"
+                    class="review-distribution"
+                >
+
+                    <div class="review-distribution-row">
+
+                        <span>
+                            ۵ ⭐
+                        </span>
+
+                        <div class="review-distribution-bar">
+                            <div
+                                id="review-bar-5"
+                                class="review-distribution-fill"
+                                style="width: 0%;"
+                            ></div>
+                        </div>
+
+                        <span id="review-count-5">
+                            ۰
+                        </span>
+
+                    </div>
+
+
+                    <div class="review-distribution-row">
+
+                        <span>
+                            ۴ ⭐
+                        </span>
+
+                        <div class="review-distribution-bar">
+                            <div
+                                id="review-bar-4"
+                                class="review-distribution-fill"
+                                style="width: 0%;"
+                            ></div>
+                        </div>
+
+                        <span id="review-count-4">
+                            ۰
+                        </span>
+
+                    </div>
+
+
+                    <div class="review-distribution-row">
+
+                        <span>
+                            ۳ ⭐
+                        </span>
+
+                        <div class="review-distribution-bar">
+                            <div
+                                id="review-bar-3"
+                                class="review-distribution-fill"
+                                style="width: 0%;"
+                            ></div>
+                        </div>
+
+                        <span id="review-count-3">
+                            ۰
+                        </span>
+
+                    </div>
+
+
+                    <div class="review-distribution-row">
+
+                        <span>
+                            ۲ ⭐
+                        </span>
+
+                        <div class="review-distribution-bar">
+                            <div
+                                id="review-bar-2"
+                                class="review-distribution-fill"
+                                style="width: 0%;"
+                            ></div>
+                        </div>
+
+                        <span id="review-count-2">
+                            ۰
+                        </span>
+
+                    </div>
+
+
+                    <div class="review-distribution-row">
+
+                        <span>
+                            ۱ ⭐
+                        </span>
+
+                        <div class="review-distribution-bar">
+                            <div
+                                id="review-bar-1"
+                                class="review-distribution-fill"
+                                style="width: 0%;"
+                            ></div>
+                        </div>
+
+                        <span id="review-count-1">
+                            ۰
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="review-message"
+                class="review-management-message"
+            ></div>
+
+
+            <!-- لیست نظرات -->
+
+            <div class="reviews-list-header">
+
+                <h3>
+                    نظرات ثبت‌شده
+                </h3>
+
+
+                <button
+                    id="refresh-reviews"
+                    type="button"
+                    class="admin-secondary-button"
+                >
+                    🔄 بروزرسانی نظرات
+                </button>
+
+            </div>
+
+
+            <div
+                id="reviews-container"
+                class="reviews-container"
+            ></div>
+
+        </section>
+
+    </main>
+
+
+    <script src="./js/admin.js"></script>
+    <script src="./js/admin-categories.js"></script>
+    <script src="./js/admin-products.js"></script>
+    <script src="./js/admin-reviews.js"></script>
+
+</body>
+
+</html>

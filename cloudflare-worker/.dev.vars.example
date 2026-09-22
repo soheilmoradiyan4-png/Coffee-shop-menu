@@ -1,0 +1,7 @@
+# این فایل رو کپی کنید به .dev.vars (بدون .example) برای تست local با `wrangler dev`
+# .dev.vars نباید هیچوقت commit بشه (توی .gitignore هست)
+SUPABASE_SERVICE_KEY=your-real-supabase-service-key
+BALE_BOT_TOKEN=your-real-bale-bot-token
+BALE_CHAT_ID=your-bale-group-chat-id
+BALE_ADMIN_CHAT_ID=your-bale-admin-chat-id
+SESSION_SECRET=a-long-random-secret-string-min-32-chars

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ورود مدیر | Cafe QR Ordering</title>
+
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/admin-login.css">
+
+</head>
+
+
+<body class="admin-login-page">
+
+    <main class="admin-login-container">
+
+        <section class="admin-login-card">
+
+            <div class="admin-login-header">
+
+                <div class="admin-login-icon">
+                    ☕
+                </div>
+
+                <h1>
+                    پنل مدیریت
+                </h1>
+
+                <p>
+                    برای ورود به مدیریت کافه وارد شوید.
+                </p>
+
+            </div>
+
+
+            <form
+                id="admin-login-form"
+                class="admin-login-form"
+            >
+
+                <div class="admin-form-group">
+
+                    <label for="admin-email">
+                          ایمیل
+                    </label>
+
+                    <input
+                        id="admin-email"
+                        type="email"
+                        autocomplete="email"
+                        placeholder="ایمیل مدیر"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="admin-form-group">
+
+                    <label for="admin-password">
+                        رمز عبور
+                    </label>
+
+                    <input
+                        id="admin-password"
+                        name="password"
+                        type="password"
+                        autocomplete="current-password"
+                        required
+                        maxlength="100"
+                    >
+
+                </div>
+
+
+                <button
+                    id="admin-login-submit"
+                    class="admin-login-submit"
+                    type="submit"
+                >
+                    ورود
+                </button>
+
+
+                <div
+                    id="admin-login-message"
+                    class="admin-login-message"
+                ></div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <script src="./js/admin-login.js"></script>
+
+</body>
+
+</html>
