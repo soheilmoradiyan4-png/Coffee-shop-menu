@@ -1,5 +1,7 @@
 const PRODUCT_API_URL =
-    "http://127.0.0.1:8787/api/admin/products";
+    window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
+        ? "http://127.0.0.1:8787/api/admin/products"
+        : "/api/admin/products";
 
 // نکته: PRODUCT_CATEGORY_API_URL اینجا عمداً دوباره تعریف نشده،
 // چون همین اسم قبلاً توی admin-categories.js (که قبل از این فایل لود میشه)
