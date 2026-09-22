@@ -1,7 +1,2 @@
-# این فایل به Cloudflare Pages می‌گه درخواست‌های /api/* رو به Worker
-# بک‌اند (cloudflare-worker/) پروکسی کنه، تا فرانت‌اند بدون هیچ تغییری
-# (API_BASE_URL = "/api") کار کنه و مشکل CORS/کوکی هم پیش نیاد.
-#
-# آدرس زیر رو با آدرس واقعی Worker خودتون (بعد از `wrangler deploy`)
-# جایگزین کنید:
+
 /api/* https://coffee-shop-menu.soheilmoradiyan4.workers.dev/api/:splat 200
