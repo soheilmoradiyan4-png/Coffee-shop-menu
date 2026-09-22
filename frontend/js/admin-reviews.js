@@ -1,5 +1,7 @@
 const REVIEW_API_URL =
-    "http://127.0.0.1:8787/api/frontend/admin/reviews";
+    window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
+        ? "http://127.0.0.1:8787/api/admin/reviews"
+        : "/api/admin/reviews";
     
 // نکته: مسیر بالا دقیقاً همون چیزیه که توی نسخه قبلی فایل بود
 // (/api/frontend/admin/reviews). اگه بک‌اند شما این مسیر رو نداره
