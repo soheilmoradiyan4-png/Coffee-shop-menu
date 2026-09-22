@@ -4,4 +4,4 @@
 #
 # آدرس زیر رو با آدرس واقعی Worker خودتون (بعد از `wrangler deploy`)
 # جایگزین کنید:
-/api/*  https://coffee-shop-api.YOUR-SUBDOMAIN.workers.dev/api/:splat  200
+/api/* https://coffee-shop-menu.soheilmoradiyan4.workers.dev/api/:splat 200
