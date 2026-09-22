@@ -1,6 +1,7 @@
 const PRODUCT_CATEGORY_API_URL =
-    "http://127.0.0.1:8787/api/admin/categories";
-    
+    window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
+        ? "http://127.0.0.1:8787/api/admin/categories"
+        : "/api/admin/categories";
 
 
 const categoryElements = {
